@@ -1,21 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using QuizMaster.Managers;
 using TMPro;
+using UnityEngine;
 
-public class EndScreen : MonoBehaviour
+namespace QuizMaster
 {
-    [SerializeField] TextMeshProUGUI finalScoreText;
-    ScoreKeeper scoreKeeper;
-
-    void Awake()
+    public class EndScreen : MonoBehaviour
     {
-        scoreKeeper = FindObjectOfType<ScoreKeeper>();
-    }
+        [SerializeField] private TextMeshProUGUI finalScoreText;
+        private ScoreManager _scoreManager;
 
-    public void ShowFinalScore()
-    {
-        finalScoreText.text = "Congratulations!\nYou got a score of " + 
-                                scoreKeeper.CalculateScore() + "%";
+        private void Awake()
+        {
+            _scoreManager = FindObjectOfType<ScoreManager>();
+        }
+
+        public void ShowFinalScore()
+        {
+            finalScoreText.text = "Congratulations!\nYou got a score of " + _scoreManager.CalculateScore() + "%";
+        }
     }
 }
